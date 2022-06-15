@@ -1,19 +1,19 @@
-def quick_sort(array, key):
+def quick_sort(array):
     if len(array) == 1:
         return array
-    pivot = array[0][key]
+    pivot = array[0]
     left = 1
     right = len(array) - 1
     while left < right:
-        if array[left][key] < pivot:
-            if array[right][key] > pivot:
+        if array[left] <= pivot:
+            if array[right] >= pivot:
                 array[left], array[right] = array[right], array[left]
             else:
                 right -= 1
         else:
             left += 1
     array[0], array[left-1] = array[left-1], array[0]
-    array = quick_sort(array[0:left], key) + quick_sort(array[left:len(array)], key)
+    array = quick_sort(array[0:left]) + quick_sort(array[left:len(array)])
     return array
 
 def read_input():
@@ -22,15 +22,19 @@ def read_input():
     for ind in range(people_number):
         row = input().split()
         row[1:len(row)] = map(int, row[1:len(row)])
+        row[0] = list(map(ord, row[0]))
+        row = [row[1], -row[2], [sym*-1 for sym in row[0]]]
         data.append(row)
     return data
 
 def print_results(array):
-    for ind in range(len(array)):
-        print(array[ind][0])
+    for ind in array:
+        name_char = [sym*-1 for sym in ind[2]]
+        name = ''.join(list(map(chr, name_char)))
+        print(name)
 
 
 if __name__ == '__main__':
     data = read_input()
-    print(data)
-    print_results(quick_sort(data, 2))
+    data_sorted = quick_sort(data)
+    print_results(data_sorted)
