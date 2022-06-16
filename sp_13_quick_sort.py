@@ -12,7 +12,8 @@ def quick_sort(array):
                 right -= 1
         else:
             left += 1
-    array[0], array[left-1] = array[left-1], array[0]
+    if array[0] <= array[left]:
+        array[0], array[left] = array[left], array[0]
     array = quick_sort(array[0:left]) + quick_sort(array[left:len(array)])
     return array
 
