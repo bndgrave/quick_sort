@@ -1,3 +1,5 @@
+# Номер посылки - 69056930
+
 def quick_sort(array):
     if len(array) == 1:
         return array
