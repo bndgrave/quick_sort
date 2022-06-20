@@ -2,7 +2,7 @@
 
 def quick_sort(array, begin, end):
     if begin >= end:
-        return -1
+        return
     pivot = array[begin]
     left = begin + 1
     right = end
